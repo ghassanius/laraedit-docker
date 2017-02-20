@@ -91,7 +91,7 @@ RUN echo mysql-server mysql-server/root_password password $DB_PASS | debconf-set
     sed -i '/^bind-address/s/bind-address.*=.*/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
 RUN /usr/sbin/mysqld & \
     sleep 10s && \
-    echo "GRANT ALL ON *.* TO root@'0.0.0.0' IDENTIFIED BY 'secret' WITH GRANT OPTION; CREATE USER 'homestead'@'0.0.0.0' IDENTIFIED BY 'secret'; GRANT ALL ON *.* TO 'homestead'@'0.0.0.0' IDENTIFIED BY 'secret' WITH GRANT OPTION; GRANT ALL ON *.* TO 'homestead'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION; FLUSH PRIVILEGES; CREATE DATABASE homestead;" | mysql
+    echo "GRANT ALL ON *.* TO root@'0.0.0.0' IDENTIFIED BY 'mysqlpass' WITH GRANT OPTION; CREATE USER 'mysqluser'@'0.0.0.0' IDENTIFIED BY 'mysqlpass'; GRANT ALL ON *.* TO 'mysqluser'@'0.0.0.0' IDENTIFIED BY 'mysqlpass' WITH GRANT OPTION; GRANT ALL ON *.* TO 'mysqluser'@'%' IDENTIFIED BY 'mysqlpass' WITH GRANT OPTION; FLUSH PRIVILEGES; CREATE DATABASE mysqlDB;" | mysql
 VOLUME ["/var/lib/mysql"]
 
 # install composer
